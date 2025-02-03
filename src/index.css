@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.active>.navlink-icon-wrapper {
+    background: linear-gradient(to right, #f27121,#e94057);
+}

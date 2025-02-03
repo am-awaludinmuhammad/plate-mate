@@ -1,7 +1,16 @@
+import Pages from "./pages/Pages";
+import Category from "./components/Category";
+import { BrowserRouter } from "react-router-dom";
+import Search from "./components/Search";
+
 function App() {
   return (
-    <h1>Welcome</h1>
-  )
+    <BrowserRouter>
+      <Search />
+      <Category />
+      <Pages />
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
