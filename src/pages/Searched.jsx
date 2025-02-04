@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import CardSkeleton from "../components/CardSkeleton";
 
 const Searched = () => {
   const [searched, setSearched] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const params = useParams();
 
   const getSearched = async (name) => {
+    setIsLoading(true);
+
     const api = await fetch(
       `https://api.spoonacular.com/recipes/complexSearch?apiKey=${
         import.meta.env.VITE_API_KEY
       }&query=${name}`
     );
     const data = await api.json();
-    
+
     setSearched(data.results);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -23,6 +28,13 @@ const Searched = () => {
   return (
     <div className="container">
       <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {isLoading && (
+          <CardSkeleton
+            count={9}
+            height={200}
+          />
+        )}
+
         {searched.map((item) => (
           <div
             key={item.id}
