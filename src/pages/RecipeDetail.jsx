@@ -19,7 +19,7 @@ const RecipeDetail = () => {
     const data = await api.json();
 
     setRecipe(data);
-    setIsLoading(false)
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -29,7 +29,11 @@ const RecipeDetail = () => {
   return (
     <div className="grid gap-20 grid-cols-1 md:grid-cols-2">
       <div>
-        <h1 className="font-semibold mb-4">{recipe.title || <Skeleton />}</h1>
+        {isLoading ? (
+          <Skeleton />
+        ) : (
+          <h1 className="font-semibold mb-4">{recipe.title}</h1>
+        )}
 
         {isLoading ? (
           <Skeleton
