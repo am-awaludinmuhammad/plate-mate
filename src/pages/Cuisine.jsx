@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import CardSkeleton from "../components/CardSkeleton";
 
 const Cuisine = () => {
@@ -35,19 +35,21 @@ const Cuisine = () => {
           />
         )}
         {cuisines.map((item) => (
-          <div
-            key={item.id}
-            className="max-w-sm rounded-2xl overflow-hidden shadow-lg"
-          >
-            <img
-              className="w-full"
-              src={item.image}
-              alt={item.title}
-            />
-            <div className="px-6 py-4 text-center">
-              <div className="font-bold mb-2">{item.title}</div>
+          <Link key={item.id} to={`/recipes/${item.id}`}>
+            <div
+              key={item.id}
+              className="max-w-sm rounded-2xl overflow-hidden shadow-lg"
+            >
+              <img
+                className="w-full"
+                src={item.image}
+                alt={item.title}
+              />
+              <div className="px-6 py-4 text-center">
+                <div className="font-bold mb-2">{item.title}</div>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
